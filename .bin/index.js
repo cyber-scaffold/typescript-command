@@ -9,7 +9,7 @@ const { transpileModule } = require("typescript");
 
 const dist_directory_path = path.resolve(process.cwd(), "./dist/");
 const source_directory_path = path.resolve(process.cwd(), "./src/");
-const source_code_path = path.resolve(source_directory_path, "./**/*.ts");
+const source_code_path = path.resolve(source_directory_path, "./**/*.{ts,js}");
 
 (async () => {
   /** 检查dist文件夹是否存在,不存在的话就创建 **/
