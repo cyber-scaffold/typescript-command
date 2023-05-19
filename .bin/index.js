@@ -7,8 +7,8 @@ const pathExists = require("path-exists");
 const { transform } = require("@babel/core");
 const { transpileModule } = require("typescript");
 
-const dist_directory_path = path.resolve(process.cwd(), "./dist/");
-const source_directory_path = path.resolve(process.cwd(), "./src/");
+const dist_directory_path = path.resolve(__dirname, "../dist/");
+const source_directory_path = path.resolve(__dirname, "../src/");
 
 (async () => {
   /** 检查dist文件夹是否存在,不存在的话就创建 **/
@@ -60,10 +60,10 @@ const source_directory_path = path.resolve(process.cwd(), "./src/");
     const after_path_replace = transform(outputText, {
       plugins: [
         ["babel-plugin-module-resolver", {
-          root: [path.resolve(process.cwd(), "../")],
+          root: [path.resolve(__dirname, "../")],
           alias: {
             "@": dist_directory_path,
-            "@@": process.cwd()
+            "@@": path.resolve(__dirname, "../")
           },
         }]
       ]
