@@ -32,6 +32,8 @@ module.exports = async function bootstrap() {
         "experimentalDecorators": true,
         "target": "es2016",
         "module": "commonjs",
+        "outDir": "./dist/",
+        "baseUrl": "./dist/",
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "esModuleInterop": true,
