@@ -41,12 +41,7 @@ const source_code_path = path.resolve(source_directory_path, "./**/*.ts");
         "forceConsistentCasingInFileNames": true,
         "strict": false,
         "skipLibCheck": true,
-        "sourceMap": true,
-        "paths": {
-          "@/*": [
-            "./*"
-          ]
-        }
+        "sourceMap": true
       }
     });
     /** 替换文件中的路径别名 **/
@@ -55,7 +50,8 @@ const source_code_path = path.resolve(source_directory_path, "./**/*.ts");
         ["babel-plugin-module-resolver", {
           root: [path.resolve(process.cwd(), "../")],
           alias: {
-            "@": dist_directory_path
+            "@": dist_directory_path,
+            "@@": process.cwd()
           },
         }]
       ]
