@@ -64,5 +64,5 @@ const source_code_path = path.resolve(source_directory_path, "./**/*.ts");
     await promisify(fs.writeFile)(dist_code_path, after_path_replace.code);
   });
   await Promise.all(compair_transcation);
-  require("../dist/index.js");
+  await import("../dist/index.js");
 })();
