@@ -8,7 +8,7 @@ export async function initial_mysql_pool() {
     port: 43306,
     user: "root",
     connectionLimit: 0,
-    password: "glyz205070410"
+    password: ""
   });
   console.log("连接成功!");
 };

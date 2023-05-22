@@ -6,7 +6,7 @@ export async function connectRabbitmq(complate_callback: (rabbit_connecting: Con
       hostname: "0.0.0.0",
       port: 25672,
       username: "root",
-      password: "glyz205070410"
+      password: ""
     }
     const connection = await amqp.connect({
       protocol: "amqp",
