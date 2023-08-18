@@ -2,12 +2,12 @@
   "name": "typescript-command",
   "version": "1.0.0",
   "description": "基于typescript的命令行项目",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
   "scripts": {
     "dev": "node ./scripts/bootstrap.js",
     "build": "tsc && tsc-alias"
   },
-  "bin": "./src/index.ts",
+  "bin": "./.bin/index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
