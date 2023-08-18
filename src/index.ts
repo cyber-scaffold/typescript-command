@@ -1,3 +1,4 @@
+#!/usr/bin/env ts-node
 import { program } from "commander";
 import { name, version } from "@@/package.json";
 
