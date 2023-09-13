@@ -1,6 +1,6 @@
 import Redis from "ioredis";
 
-export let redis_connection: any;
+export let redisConnection: any;
 
 export async function createRedisConnection() {
 
@@ -16,7 +16,7 @@ export async function createRedisConnection() {
 
     client.on("connect", () => {
       console.log("连接成功!");
-      redis_connection = client;
+      redisConnection = client;
     });
 
   } catch (error) {

@@ -1,9 +1,9 @@
 import { createPool, Pool, PoolConnection } from "mysql2/promise";
 
-export let mysql_pool: Pool;
+export let mysqlPool: Pool;
 
-export async function initial_mysql_pool() {
-  mysql_pool = createPool({
+export async function initialMySQLPool() {
+  mysqlPool = createPool({
     host: "0.0.0.0",
     port: 43306,
     user: "root",
@@ -13,10 +13,10 @@ export async function initial_mysql_pool() {
   console.log("连接成功!");
 };
 
-export async function get_mysql_connection(): Promise<PoolConnection> {
+export async function getMySQLConnection(): Promise<PoolConnection> {
 
   try {
-    return await mysql_pool.getConnection();
+    return await mysqlPool.getConnection();
   } catch (error) {
     throw error;
   };
