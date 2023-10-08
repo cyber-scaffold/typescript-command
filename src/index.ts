@@ -1,10 +1,9 @@
-#!/usr/bin/env ts-node
 import { program } from "commander";
-import { name, version } from "@@/package.json";
 
 import { testCommand } from "@/actions/testCommand";
 import { createConfigFile } from "@/actions/createConfigFile";
 
+import { name, version } from "../package.json";
 
 program
   .usage(name)
