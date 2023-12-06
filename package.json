@@ -4,8 +4,8 @@
   "description": "基于typescript的命令行项目",
   "main": "./dist/index.js",
   "scripts": {
-    "dev": "node ./scripts/bootstrap.js",
-    "build": "tsc && tsc-alias"
+    "dev": "node ./.bin/index.js",
+    "build": "node ./.bin/build.js"
   },
   "bin": "./.bin/index.js",
   "keywords": [],
