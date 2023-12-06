@@ -23,9 +23,6 @@ const source_directory_path = path.resolve(__dirname, "../src/");
   /** 执行ts文件的编译事务 **/
   const compair_transcation = source_code_tsfiles.map(async (single_source_file_path) => {
     const dist_code_path = single_source_file_path.replace(source_directory_path, dist_directory_path).replace(".ts", ".js");
-    if (await pathExists(dist_code_path)) {
-      return false;
-    };
     const source_file_content = await promisify(fs.readFile)(single_source_file_path, "utf-8");
     const dist_code_directory = path.dirname(dist_code_path);
     if (!await pathExists(dist_code_directory)) {
