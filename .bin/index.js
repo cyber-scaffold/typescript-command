@@ -13,6 +13,11 @@ const dist_directory_path = path.resolve(__dirname, "../dist/");
 const source_directory_path = path.resolve(__dirname, "../src/");
 
 (async () => {
+
+  /** 检测.npmrc文件是否存在，如果不存在的话就说明当前属于发行版,运行时不会编译 **/
+
+  const isPublishd = !(await pathExists(path.resolve(__dirname, "../.npmrc")));
+
   /** 检查dist文件夹是否存在,不存在的话就创建 **/
   if (!await pathExists(dist_directory_path)) {
     await promisify(fs.mkdir)(dist_directory_path, { recursive: true });
@@ -24,7 +29,7 @@ const source_directory_path = path.resolve(__dirname, "../src/");
   const compair_transcation = source_code_tsfiles.map(async (single_source_file_path) => {
     const dist_code_path = single_source_file_path.replace(source_directory_path, dist_directory_path).replace(".ts", ".js");
     if (await pathExists(dist_code_path)) {
-      return false;
+      if (isPublishd) { return false };
     };
     const source_file_content = await promisify(fs.readFile)(single_source_file_path, "utf-8");
     const dist_code_directory = path.dirname(dist_code_path);
