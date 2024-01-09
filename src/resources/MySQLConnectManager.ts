@@ -12,15 +12,12 @@ export class MySQLConnectManager {
 
   private pool: Pool;
 
-  constructor({ host, port, user, password }) {
+  /** 初始化连接 **/
+  public async initialize({ host, port, user, password }): Promise<void> {
     this.host = host;
     this.port = port;
     this.user = user;
     this.password = password;
-  };
-
-  /** 初始化连接 **/
-  public async initialize() {
     this.pool = createPool({
       host: this.host,
       port: this.port,

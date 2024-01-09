@@ -17,12 +17,12 @@ export class ApplicationConfigManager {
 
   /** 声明在操作系统层的配置文件路径 **/
   get systemConfigPath() {
-    return path.join("/etc/", "/application/", "./config.json");
+    return path.join("/etc/", "/redis-broadcast-discover/", "./config.json");
   };
 
   /** 声明在$HOME目录下的配置文件路径 **/
   get custmerConfigPath() {
-    return path.join(os.homedir(), "/.application/", "./config.json");
+    return path.join(os.homedir(), "/.redis-broadcast-discover/", "./config.json");
   };
 
   /** 初始化并加载配置到运行时 **/

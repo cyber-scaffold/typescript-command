@@ -8,13 +8,10 @@ export class RedisConnectManager {
 
   private connection: RedisClientType;
 
-  constructor({ host, port }) {
+  /** 初始化Redis连接 **/
+  public async initialize({ host, port }): Promise<void> {
     this.host = host;
     this.port = port;
-  };
-
-  /** 初始化Redis连接 **/
-  public async initialize(): Promise<any> {
     try {
       this.connection = createClient({
         url: `redis://${this.host}:${this.port}`,

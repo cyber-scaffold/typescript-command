@@ -1,11 +1,11 @@
-import { IPublishOption, IListenerOption, RabbitmqProducer, RabbitmqConsumer } from "@/resources/RabbitmqAbstract";
+import { IRabbitMQConfig, IPublishOption, IListenerOption, RabbitmqProducer, RabbitmqConsumer } from "@/resources/RabbitmqAbstract";
 
 
 /** 有推送数量限制的队列的生产者类(派生类) **/
 export class LimitedRabbitmqProducer extends RabbitmqProducer {
 
-  constructor(options: IPublishOption) {
-    super(options);
+  constructor(config: IRabbitMQConfig, options: IPublishOption) {
+    super(config, options);
   };
 
   /** 创建一个并行队列 **/
@@ -42,8 +42,8 @@ export class LimitedRabbitmqProducer extends RabbitmqProducer {
 /** 有推送数量限制的消费者类(派生类) **/
 export class LimitedRabbitmqConsumer extends RabbitmqConsumer {
 
-  constructor(options: IListenerOption) {
-    super(options);
+  constructor(config: IRabbitMQConfig, options: IPublishOption) {
+    super(config, options);
   };
 
   /** 创建或加入一个频道 **/
