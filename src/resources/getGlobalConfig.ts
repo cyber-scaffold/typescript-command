@@ -5,7 +5,18 @@ import pathExists from "path-exists";
 import { readFileSync } from "jsonfile";
 
 const defaultConfig = {
-
+  "swagger": true,
+  "port": 28652,
+  "mysql": {
+    "host": "0.0.0.0",
+    "port": 3306,
+    "username": "root",
+    "password": "gaea0571"
+  },
+  "redis": {
+    "host": "0.0.0.0",
+    "port": 6379
+  }
 };
 
 export function getGlobalConfig() {

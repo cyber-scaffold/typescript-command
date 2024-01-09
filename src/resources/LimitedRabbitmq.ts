@@ -1,4 +1,4 @@
-import { IPublishOption, IListenerOption, RabbitmqProducer, RabbitmqConsumer } from "@/frameworks/RabbitmqAbstract";
+import { IPublishOption, IListenerOption, RabbitmqProducer, RabbitmqConsumer } from "@/resources/RabbitmqAbstract";
 
 
 /** 有推送数量限制的队列的生产者类(派生类) **/
