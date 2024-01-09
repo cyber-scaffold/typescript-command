@@ -37,8 +37,7 @@ export abstract class RabbitmqProducer {
   /** 创建Rabbitmq之后的连接 **/
   protected connection: Connection;
 
-  constructor(config: IRabbitMQConfig, options: IPublishOption) {
-    this.config = config;
+  constructor(options: IPublishOption) {
     const { exchangeName, routerName, queueName } = options;
     this.Exchange_TTL = `${exchangeName}_TTL`;
     this.Queue_TTL = `${queueName}_TTL`;
@@ -49,7 +48,8 @@ export abstract class RabbitmqProducer {
   };
 
   /** 消息队列初始化 **/
-  public async initialize() {
+  public async initialize(config: IRabbitMQConfig) {
+    this.config = config;
     try {
       const rabbitConfig = {
         hostname: this.config.hostname,
@@ -109,7 +109,7 @@ export abstract class RabbitmqConsumer {
   /** 创建Rabbitmq之后的连接 **/
   protected connection: Connection;
 
-  constructor(config: IRabbitMQConfig, options: IPublishOption) {
+  constructor(options: IPublishOption) {
     const { exchangeName, routerName, queueName } = options;
     this.Exchange_TTL = `${exchangeName}_TTL`;
     this.Queue_TTL = `${queueName}_TTL`;
@@ -119,7 +119,8 @@ export abstract class RabbitmqConsumer {
   };
 
   /** 消息队列初始化 **/
-  public async initialize() {
+  public async initialize(config: IRabbitMQConfig) {
+    this.config = config;
     try {
       const rabbitConfig = {
         hostname: this.config.hostname,
