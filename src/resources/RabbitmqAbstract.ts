@@ -1,6 +1,12 @@
 import { red, green } from "colors";
 import amqp, { Connection } from "amqplib";
-import { getGlobalConfig } from "@/resources/getGlobalConfig";
+
+export interface IRabbitMQConfig {
+  hostname: string;
+  port: number | string;
+  username: string;
+  password: string;
+};
 
 export interface IPublishOption {
   exchangeName: string;
@@ -25,10 +31,14 @@ export abstract class RabbitmqProducer {
 
   protected RoutingKey_DLX: string;
 
+  /** RabbitMQ的配置 **/
+  protected config: IRabbitMQConfig;
+
   /** 创建Rabbitmq之后的连接 **/
   protected connection: Connection;
 
-  constructor(options: IPublishOption) {
+  constructor(config: IRabbitMQConfig, options: IPublishOption) {
+    this.config = config;
     const { exchangeName, routerName, queueName } = options;
     this.Exchange_TTL = `${exchangeName}_TTL`;
     this.Queue_TTL = `${queueName}_TTL`;
@@ -36,18 +46,16 @@ export abstract class RabbitmqProducer {
     this.Exchange_DLX = `${exchangeName}_DLX`;
     this.Queue_DLX = `${queueName}_DLX`;
     this.RoutingKey_DLX = `${routerName}_DLX`;
-
   };
 
   /** 消息队列初始化 **/
   public async initialize() {
     try {
-      const { rabbitmq } = await getGlobalConfig();
       const rabbitConfig = {
-        hostname: rabbitmq.host,
-        port: rabbitmq.port,
-        username: rabbitmq.user,
-        password: rabbitmq.password
+        hostname: this.config.hostname,
+        port: this.config.port,
+        username: this.config.username,
+        password: this.config.password
       };
       this.connection = await amqp.connect({
         protocol: "amqp",
@@ -95,10 +103,13 @@ export abstract class RabbitmqConsumer {
 
   protected RoutingKey_DLX: string;
 
+  /** RabbitMQ的配置 **/
+  protected config: IRabbitMQConfig;
+
   /** 创建Rabbitmq之后的连接 **/
   protected connection: Connection;
 
-  constructor(options: IPublishOption) {
+  constructor(config: IRabbitMQConfig, options: IPublishOption) {
     const { exchangeName, routerName, queueName } = options;
     this.Exchange_TTL = `${exchangeName}_TTL`;
     this.Queue_TTL = `${queueName}_TTL`;
@@ -110,12 +121,11 @@ export abstract class RabbitmqConsumer {
   /** 消息队列初始化 **/
   public async initialize() {
     try {
-      const { rabbitmq } = await getGlobalConfig();
       const rabbitConfig = {
-        hostname: rabbitmq.host,
-        port: rabbitmq.port,
-        username: rabbitmq.user,
-        password: rabbitmq.password
+        hostname: this.config.hostname,
+        port: this.config.port,
+        username: this.config.username,
+        password: this.config.password
       };
       this.connection = await amqp.connect({
         protocol: "amqp",
