@@ -1,8 +1,8 @@
 import { program } from "commander";
 
 import { bootstrapApplication } from "@/bootstrapApplication";
-import { bootstrapServices } from "@/bootstrapServices";
 import { bootstrapControllers } from "@/bootstrapControllers";
+import { bootstrapServices } from "@/bootstrapServices";
 
 import { name, version } from "../package.json";
 
