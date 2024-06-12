@@ -1,20 +1,23 @@
+import { injectable, inject } from "inversify";
 import { createClient, RedisClientType } from "redis";
 
+import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
+
+@injectable()
 export class RedisConnectManager {
-
-  private host: string;
-
-  private port: number;
 
   private connection: RedisClientType;
 
+  constructor(
+    @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager
+  ) { };
+
   /** 初始化Redis连接 **/
-  public async initialize({ host, port }): Promise<void> {
-    this.host = host;
-    this.port = port;
+  public async initialize(): Promise<void> {
+    const { redis } = this.applicationConfigManager.getRuntimeConfig();
     try {
       this.connection = createClient({
-        url: `redis://${this.host}:${this.port}`,
+        url: `redis://${redis.host}:${redis.port}`,
         socket: { reconnectStrategy: false }
       });
 

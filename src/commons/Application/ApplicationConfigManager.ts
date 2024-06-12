@@ -1,9 +1,12 @@
 import os from "os";
 import path from "path";
 import { merge } from "lodash";
-import pathExists from "path-exists";
+import { program } from "commander";
 import { readFile } from "jsonfile";
+import pathExists from "path-exists";
+import { injectable } from "inversify";
 
+@injectable()
 export class ApplicationConfigManager {
 
   /** 应用层内置的默认配置 **/
@@ -33,6 +36,7 @@ export class ApplicationConfigManager {
     if (await pathExists(this.custmerConfigPath)) {
       this.custmerConfig = await readFile(this.custmerConfigPath);
     };
+    program.option("-c,--config <string>", "配置文件路径", "./.defaultrc.js");
   };
 
   /** 获取最终组合之后的运行时配置 **/
