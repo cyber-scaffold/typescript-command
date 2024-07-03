@@ -5,6 +5,6 @@ import { TestController } from "@/controllers/TestController";
 
 export async function bootstrapControllers() {
   IOCContainer.bind(TestController).toSelf().inSingletonScope();
-  await IOCContainer.get(TestController).execute(program);
+  await IOCContainer.get(TestController).definition(program);
 
 };
