@@ -10,7 +10,7 @@ setImmediate(async () => {
   try {
     await bootstrapApplication();
     await bootstrapServices();
-    program.usage(name).version(version);
+    program.name(name).usage(name).version(version);
     await bootstrapControllers();
     program.parse();
   } catch (error) {
