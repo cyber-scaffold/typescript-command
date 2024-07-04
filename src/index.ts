@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+import { green } from "colors";
 import { program } from "commander";
 
 import { bootstrapApplication } from "@/bootstrapApplication";
@@ -10,7 +12,7 @@ setImmediate(async () => {
   try {
     await bootstrapApplication();
     await bootstrapServices();
-    program.name(name).usage(name).version(version);
+    program.name(green(name)).usage(["", green(`${name} command <argument> [options]`)].join("\n")).version(version);
     await bootstrapControllers();
     program.parse();
   } catch (error) {
