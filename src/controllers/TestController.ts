@@ -1,4 +1,5 @@
 import { Command } from "commander";
+import { yellow, magenta, red } from "colors";
 import { injectable, inject } from "inversify";
 import { CommandControllerInterface } from "@/commons/Interfaces/CommandControllerInterface";
 
@@ -20,14 +21,14 @@ export class TestController implements CommandControllerInterface {
   public async definition(program: Command) {
     program
       .command("test")
-      .description("这是测试命令")
-      .addHelpText("after", [
+      .description(magenta("这是测试命令"))
+      .addHelpText("after", yellow([
         "",
         "Example call:",
         "  command 1",
         "  command 2",
         " "
-      ].join("\n"))
+      ].join("\n")))
       .action(async () => {
         await this.execute();
       });
