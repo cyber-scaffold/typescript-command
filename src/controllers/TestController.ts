@@ -21,6 +21,13 @@ export class TestController implements CommandControllerInterface {
     program
       .command("test")
       .description("这是测试命令")
+      .addHelpText("after", [
+        "",
+        "Example call:",
+        "  command 1",
+        "  command 2",
+        " "
+      ].join("\n"))
       .action(async () => {
         await this.execute();
       });
