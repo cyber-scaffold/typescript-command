@@ -4,7 +4,7 @@ import { injectable, inject } from "inversify";
 import { CommandControllerInterface } from "@/commons/Interfaces/CommandControllerInterface";
 
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
-import { MainServices } from "@/services/MainServices";
+import { MainServiceFactory, MainServiceProvider } from "@/services/MainService";
 
 // export const test_command_argument=new Argument("<actions>","动作类型描述").choices(["init","info"]);
 // export const test_command_option=new Option("-t,--test_option <string>").default("test_option_value");
@@ -14,7 +14,7 @@ export class TestController implements CommandControllerInterface {
 
   constructor(
     @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager,
-    @inject(MainServices) private readonly mainServices: MainServices
+    @inject(MainServiceFactory) private readonly mainServiceProvider: MainServiceProvider
   ) { };
 
   /** 这个方法用户在命令行上注册调用句柄 **/
@@ -36,7 +36,8 @@ export class TestController implements CommandControllerInterface {
   };
 
   public async execute(params?: any): Promise<any> {
-    await this.mainServices.execute();
+    const mainService = this.mainServiceProvider();
+    await mainService.execute();
   };
 
 };
