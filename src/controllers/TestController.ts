@@ -3,7 +3,9 @@ import { yellow, magenta, red } from "colors";
 import { injectable, inject } from "inversify";
 
 import { IOCContainer } from "@/commons/Application/IOCContainer";
-import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
+// import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
+
+import { SessionInfoService } from "@/services/SessionInfoService";
 import { TransientService } from "@/services/TransientService";
 
 // export const test_command_argument=new Argument("<actions>","动作类型描述").choices(["init","info"]);
@@ -22,22 +24,29 @@ export async function definition(program: Command) {
       " "
     ].join("\n")))
     .action(async () => {
-      const testController = IOCContainer.get(TestController);
-      await testController.execute();
+      /** 创建请求级别的作用域 **/
+      const requestScopeContainer = IOCContainer.createChild();
+      /** 在独立的请求级别作用域上绑定控制器处理 **/
+      requestScopeContainer.bind(ControllerProcess).toSelf().inSingletonScope();
+      /** 执行处理 **/
+      const controllerProcess = requestScopeContainer.get(ControllerProcess);
+      await controllerProcess.execute();
     });
   return true;
 };
 
 @injectable()
-export class TestController {
+export class ControllerProcess {
 
   constructor(
-    @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager,
+    // @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager,
+    @inject(SessionInfoService) private readonly sessionInfoService: SessionInfoService,
     @inject(TransientService) private readonly transientService: TransientService
   ) { };
 
   public async execute(params?: any): Promise<any> {
-    await this.transientService.execute();
+    await this.sessionInfoService.getSessionInfo();
+    console.log(await this.transientService.execute());
   };
 
 };

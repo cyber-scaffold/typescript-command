@@ -14,7 +14,7 @@ export class TransientService {
   ) { };
 
   public async execute() {
-    console.log("这是一个瞬态服务", this.id);
+    return this.id;
   };
 
 };

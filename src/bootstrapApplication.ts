@@ -5,4 +5,5 @@ import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfi
 export async function bootstrapApplication() {
   IOCContainer.bind(ApplicationConfigManager).toSelf().inSingletonScope();
   await IOCContainer.get(ApplicationConfigManager).initialize();
+
 };
