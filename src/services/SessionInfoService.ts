@@ -1,6 +1,8 @@
+import { v4 as uuidv4 } from "uuid";
 import { injectable, inject } from "inversify";
 
-import { TransientService } from "@/services/TransientService";
+import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
+
 /**
  * 会话级别的服务就特别适合用 RequestScope 作用域
  * 需要在中间件或者入口函数处使用container.createChild()初始化
@@ -8,12 +10,14 @@ import { TransientService } from "@/services/TransientService";
 @injectable()
 export class SessionInfoService {
 
+  private id = uuidv4();
+
   constructor(
-    @inject(TransientService) private readonly transientService: TransientService
+    @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager
   ) { };
 
   public async getSessionInfo() {
-    console.log(await this.transientService.execute());
+    return this.id;
   };
 
 };

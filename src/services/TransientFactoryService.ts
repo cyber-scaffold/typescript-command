@@ -21,7 +21,7 @@ export class TransientFactoryService {
   ) { };
 
   public async execute() {
-    console.log("瞬态服务,使用工厂模式", this.id);
+    return this.id;
   };
 
 };

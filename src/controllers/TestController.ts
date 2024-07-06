@@ -6,7 +6,7 @@ import { IOCContainer } from "@/commons/Application/IOCContainer";
 // import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 import { SessionInfoService } from "@/services/SessionInfoService";
-import { TransientService } from "@/services/TransientService";
+import { TransientFactoryServiceFactory, TransientFactoryServiceProvider } from "@/services/TransientFactoryService";
 
 // export const test_command_argument=new Argument("<actions>","动作类型描述").choices(["init","info"]);
 // export const test_command_option=new Option("-t,--test_option <string>").default("test_option_value");
@@ -41,12 +41,14 @@ export class ControllerProcess {
   constructor(
     // @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager,
     @inject(SessionInfoService) private readonly sessionInfoService: SessionInfoService,
-    @inject(TransientService) private readonly transientService: TransientService
+    @inject(TransientFactoryServiceFactory) private readonly transientFactoryServiceProvider: TransientFactoryServiceProvider
   ) { };
 
   public async execute(params?: any): Promise<any> {
-    await this.sessionInfoService.getSessionInfo();
-    console.log(await this.transientService.execute());
+    console.log("transient scope service run 1 time", await this.transientFactoryServiceProvider().execute());
+    console.log("transient scope service run 2 time", await this.transientFactoryServiceProvider().execute());
+    console.log("request scope service run 1 time", await this.sessionInfoService.getSessionInfo());
+    console.log("request scope service run 2 time", await this.sessionInfoService.getSessionInfo());
   };
 
 };
