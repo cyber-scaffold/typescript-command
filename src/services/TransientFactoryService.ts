@@ -11,6 +11,9 @@ export function TransientFactoryServiceFactory(context: interfaces.Context): Tra
   };
 };
 
+/**
+ * @description 测试inTransientScope在工厂模式下的行为
+ * **/
 @injectable()
 export class TransientFactoryService {
 
