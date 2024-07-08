@@ -5,7 +5,7 @@ import { RequestFactoryServiceFactory, RequestFactoryServiceProvider } from "@/s
 import { TransientFactoryServiceFactory, TransientFactoryServiceProvider } from "@/services/TransientFactoryService";
 
 @injectable()
-export class TestProcessService {
+export class TestService {
 
   constructor(
     // @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager,
