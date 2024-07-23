@@ -19,23 +19,24 @@ export async function definition(rootCommand: Command) {
       " "
     ].join("\n")))
     .action(async () => {
-      await IOCContainer.get(TestProjectProcess).execute();
+      await IOCContainer.get(TestProject).execute();
+      return process.exit(0);
     });
   return true;
 };
 
 
 @injectable()
-export class TestProjectProcess {
+export class TestProject {
 
   constructor(
-    @inject(TestService) private readonly testService: TestService
+    @inject(TestService) private readonly $TestService: TestService
   ) { };
 
   public async execute() {
-    this.testService.execute();
+    this.$TestService.execute();
   };
 
 };
 
-IOCContainer.bind(TestProjectProcess).toSelf().inRequestScope();
+IOCContainer.bind(TestProject).toSelf().inRequestScope();

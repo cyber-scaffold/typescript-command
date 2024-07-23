@@ -20,7 +20,7 @@ export class TransientFactoryService {
   private id = uuidv4();
 
   constructor(
-    @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager
+    @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 
   public async execute() {
