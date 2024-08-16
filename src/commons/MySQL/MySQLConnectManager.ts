@@ -1,6 +1,8 @@
 import { injectable, inject } from "inversify";
 import { createPool, Pool, PoolConnection } from "mysql2/promise";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
+
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 @injectable()
@@ -49,3 +51,5 @@ export class MySQLConnectManager {
   };
 
 };
+
+IOCContainer.bind(MySQLConnectManager).toSelf().inSingletonScope();

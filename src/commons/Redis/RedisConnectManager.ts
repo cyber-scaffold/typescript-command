@@ -1,6 +1,8 @@
 import { injectable, inject } from "inversify";
 import { createClient, RedisClientType } from "redis";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
+
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 @injectable()
@@ -46,6 +48,7 @@ export class RedisConnectManager {
 
 };
 
+IOCContainer.bind(RedisConnectManager).toSelf().inSingletonScope();
 
 // import Redis from "ioredis";
 

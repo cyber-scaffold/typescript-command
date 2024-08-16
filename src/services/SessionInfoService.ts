@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { injectable, inject } from "inversify";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
+
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 /**
@@ -21,3 +23,5 @@ export class SessionInfoService {
   };
 
 };
+
+IOCContainer.bind(SessionInfoService).toSelf().inRequestScope();

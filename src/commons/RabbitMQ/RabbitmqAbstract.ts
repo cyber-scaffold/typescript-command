@@ -2,6 +2,8 @@ import { red, green } from "colors";
 import amqp, { Connection } from "amqplib";
 import { injectable, inject } from "inversify";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
+
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 import { logger } from "@/utils/logger";
 

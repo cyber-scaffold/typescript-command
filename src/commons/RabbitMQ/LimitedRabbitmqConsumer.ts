@@ -1,6 +1,7 @@
 import { injectable } from "inversify";
 import { IListenerOption, RabbitmqConsumer } from "@/commons/RabbitMQ/RabbitmqAbstract";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
 
 /** 有推送数量限制的消费者类(派生类) **/
 export class LimitedRabbitmqConsumer extends RabbitmqConsumer {

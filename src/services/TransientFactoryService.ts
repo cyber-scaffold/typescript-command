@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { injectable, interfaces, inject } from "inversify";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
+
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 export type TransientFactoryServiceProvider = () => TransientFactoryService;
@@ -28,3 +30,6 @@ export class TransientFactoryService {
   };
 
 };
+
+IOCContainer.bind(TransientFactoryService).toSelf().inTransientScope();
+IOCContainer.bind(TransientFactoryServiceFactory).toFactory(TransientFactoryServiceFactory);

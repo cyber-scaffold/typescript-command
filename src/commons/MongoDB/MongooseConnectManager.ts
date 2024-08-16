@@ -1,6 +1,8 @@
 import { injectable, inject } from "inversify";
 import { createConnection, Connection } from "mongoose";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
+
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 @injectable()
@@ -38,3 +40,5 @@ export class MongooseConnectManager {
   };
 
 };
+
+IOCContainer.bind(MongooseConnectManager).toSelf().inSingletonScope();

@@ -1,6 +1,7 @@
 import { injectable } from "inversify";
 import { IPublishOption, RabbitmqProducer } from "@/commons/RabbitMQ/RabbitmqAbstract";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
 
 /** 有推送数量限制的队列的生产者类(派生类) **/
 export class LimitedRabbitmqProducer extends RabbitmqProducer {

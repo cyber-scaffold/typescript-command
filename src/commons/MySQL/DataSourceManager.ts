@@ -1,6 +1,8 @@
 import { DataSource } from "typeorm";
 import { injectable, inject } from "inversify";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
+
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 /** 很多分库分表都是在应用层完成的,一般都是根据数据库名进行区分 **/
@@ -39,6 +41,8 @@ export class DataSourceManager {
   };
 
 };
+
+IOCContainer.bind(DataSourceManager).toSelf().inSingletonScope();
 
 /**
  * @description 配置样例如下

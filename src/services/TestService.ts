@@ -1,5 +1,7 @@
 import { injectable, inject } from "inversify";
 
+import { IOCContainer } from "@/commons/Application/IOCContainer";
+
 import { SessionInfoService } from "@/services/SessionInfoService";
 import { RequestFactoryServiceFactory, RequestFactoryServiceProvider } from "@/services/RequestFactoryService";
 import { TransientFactoryServiceFactory, TransientFactoryServiceProvider } from "@/services/TransientFactoryService";
@@ -24,3 +26,5 @@ export class TestService {
   };
 
 };
+
+IOCContainer.bind(TestService).toSelf().inRequestScope();
