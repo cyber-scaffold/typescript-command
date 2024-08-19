@@ -13,12 +13,12 @@ export class MySQLConnectManager {
   private connection: PoolConnection;
 
   constructor(
-    @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager
+    @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 
   /** 初始化连接 **/
   public async initialize(): Promise<void> {
-    const { mysql } = this.applicationConfigManager.getRuntimeConfig();
+    const { mysql } = this.$ApplicationConfigManager.getRuntimeConfig();
     this.pool = createPool({
       host: mysql.host,
       port: mysql.port,

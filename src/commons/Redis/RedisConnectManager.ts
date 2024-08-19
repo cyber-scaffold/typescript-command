@@ -11,12 +11,12 @@ export class RedisConnectManager {
   private connection: RedisClientType;
 
   constructor(
-    @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager
+    @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 
   /** 初始化Redis连接 **/
   public async initialize(): Promise<void> {
-    const { redis } = this.applicationConfigManager.getRuntimeConfig();
+    const { redis } = this.$ApplicationConfigManager.getRuntimeConfig();
     try {
       this.connection = createClient({
         url: `redis://${redis.host}:${redis.port}`,

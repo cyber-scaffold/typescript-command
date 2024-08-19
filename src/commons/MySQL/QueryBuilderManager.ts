@@ -11,12 +11,12 @@ export class QueryBuilderManager {
   private knexQueryBuilder: Knex;
 
   constructor(
-    @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager
+    @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 
   /** 初始化knex**/
   public async initialize() {
-    const { mysql } = this.applicationConfigManager.getRuntimeConfig();
+    const { mysql } = this.$ApplicationConfigManager.getRuntimeConfig();
     this.knexQueryBuilder = knex({
       client: "mysql2",
       connection: {

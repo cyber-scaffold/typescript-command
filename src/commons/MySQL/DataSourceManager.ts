@@ -13,12 +13,12 @@ export class DataSourceManager {
   private appDataSource: DataSource;
 
   constructor(
-    @inject(ApplicationConfigManager) private readonly applicationConfigManager: ApplicationConfigManager
+    @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 
   /** 初始化 **/
   public initialize() {
-    const { mysql } = this.applicationConfigManager.getRuntimeConfig();
+    const { mysql } = this.$ApplicationConfigManager.getRuntimeConfig();
     this.appDataSource = new DataSource({
       type: "mysql",
       port: mysql.port,

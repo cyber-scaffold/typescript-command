@@ -7,7 +7,7 @@ import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfi
 
 import { definition as definitionTestProjectCommand } from "@/controllers/TestProject";
 
-import { name, version } from "../package.json";
+import { name, version } from "@@/package.json";
 
 setImmediate(async () => {
   try {
