@@ -7,31 +7,29 @@ import { IOCContainer } from "@/commons/Application/IOCContainer";
 import { TestService } from "@/services/TestService";
 
 
-/** 这个方法用户在命令行上注册调用句柄 **/
-export async function definition(rootCommand: Command) {
-  rootCommand
-    .command("project")
-    .description(magenta("测试具体的项目"))
-    .addHelpText("after", yellow([
-      "",
-      "Example call:",
-      "  command test project",
-      " "
-    ].join("\n")))
-    .action(async () => {
-      await IOCContainer.get(TestProject).execute();
-      return process.exit(0);
-    });
-  return true;
-};
-
-
 @injectable()
 export class TestProject {
 
   constructor(
     @inject(TestService) private readonly $TestService: TestService
   ) { };
+
+  /** 这个方法用户在命令行上注册调用句柄 **/
+  public definition(rootCommand: Command): void {
+    rootCommand
+      .command("project")
+      .description(magenta("测试具体的项目"))
+      .addHelpText("after", yellow([
+        "",
+        "Example call:",
+        "  command test project",
+        " "
+      ].join("\n")))
+      .action(async () => {
+        await this.execute();
+        return process.exit(0);
+      });
+  }
 
   public async execute() {
     this.$TestService.execute();
