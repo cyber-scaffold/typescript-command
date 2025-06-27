@@ -4,6 +4,7 @@ import { injectable, inject } from "inversify";
 import { IOCContainer } from "@/commons/Application/IOCContainer";
 
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
+import { logger } from "@/utils/logger";
 
 /** 很多分库分表都是在应用层完成的,一般都是根据数据库名进行区分 **/
 @injectable()
@@ -29,7 +30,8 @@ export class DataSourceManager {
       entities: [],
       synchronize: true
     });
-    await this.appDataSource.initialize()
+    await this.appDataSource.initialize();
+    logger.info("AppDataSource 连接成功!");
   };
 
   /** 根据数据库名称获取AppDataSource连接对象 **/
