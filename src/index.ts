@@ -11,7 +11,7 @@ import { name, version } from "@@/package.json";
 
 setImmediate(async () => {
   try {
-    program.name(green(name)).usage(["", green(`${name} command <argument> [options]`)].join("\n")).version(version);
+    program.name(green(name)).usage(["", green(`${name} <command> <argument> [options]`)].join("\n")).version(version);
 
     const testCommand = program.command("test").description("这是test相关的命令,是根节点");
     IOCContainer.get(TestProject).definition(testCommand);
