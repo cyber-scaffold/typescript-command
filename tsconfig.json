@@ -1,11 +1,4 @@
 {
-  "ts-node": {
-    "transpileOnly": true,
-    "require": [
-      "tsconfig-paths/register",
-      "typescript-transform-paths/register"
-    ]
-  },
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -16,6 +9,7 @@
     "resolveJsonModule": true,
     "outDir": "./dist/",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "skipLibCheck": true,
