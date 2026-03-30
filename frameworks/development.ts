@@ -6,6 +6,7 @@ import { nodeExternalsPlugin } from "esbuild-node-externals";
 
 setImmediate(async () => {
   await promisify(fs.rm)(path.resolve(process.cwd(), "./dist/"), { recursive: true, force: true });
+  await promisify(fs.rm)(path.resolve(process.cwd(), "./types/"), { recursive: true, force: true });
   await esbuild.build({
     entryPoints: [path.resolve(process.cwd(), "./src/index.ts")],
     bundle: true,
