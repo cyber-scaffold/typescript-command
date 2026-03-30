@@ -4,6 +4,8 @@ import esbuild from "esbuild";
 import { promisify } from "util";
 import { nodeExternalsPlugin } from "esbuild-node-externals";
 
+// import { generateDeclaration } from "@@/frameworks/generateDeclaration";
+
 setImmediate(async () => {
   await promisify(fs.rm)(path.resolve(process.cwd(), "./dist/"), { recursive: true, force: true });
   await esbuild.build({
@@ -16,4 +18,5 @@ setImmediate(async () => {
       packagePath: path.resolve(process.cwd(), "./package.json")
     })]
   });
+  // await generateDeclaration();
 });

@@ -43,6 +43,8 @@
     "@types/node": "^24.10.0",
     "esbuild": "^0.25.12",
     "esbuild-node-externals": "^1.20.1",
-    "esbuild-register": "^3.6.0"
+    "esbuild-register": "^3.6.0",
+    "ts-morph": "^27.0.2",
+    "typescript": "^5.7.3"
   }
 }
