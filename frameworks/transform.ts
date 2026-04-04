@@ -2,13 +2,17 @@ import path from "path";
 import { Project } from "ts-morph";
 import { readFile } from "jsonfile";
 
-export async function generateDeclaration() {
+export async function transform() {
   /** 以下是生成DTS类型注释的逻辑 **/
   const tsConfigFileContent = await readFile(path.resolve(process.cwd(), "./tsconfig.json"));
   /** 处理掉compilerOptions中对输出结果有影响的属性 **/
+  delete tsConfigFileContent.compilerOptions["jsx"];
   delete tsConfigFileContent.compilerOptions["target"];
   delete tsConfigFileContent.compilerOptions["module"];
+  delete tsConfigFileContent.compilerOptions["declaration"];
   delete tsConfigFileContent.compilerOptions["moduleResolution"];
+  tsConfigFileContent.compilerOptions["outDir"] = path.resolve(process.cwd(), "./dist/");
+  tsConfigFileContent.exclude = [path.resolve(process.cwd(), "./dist/"), path.resolve(process.cwd(), "./example/")];
   const project = new Project(tsConfigFileContent);
   project.addSourceFilesAtPaths("./src/**/*.ts");
   /** 获取到所有的源代码管理对象 **/

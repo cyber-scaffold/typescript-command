@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "emitDeclarationOnly": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2016",
     "module": "commonjs",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "outDir": "./types/",
+    "outDir": "./dist/",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": false,
