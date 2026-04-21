@@ -28,7 +28,7 @@ export class EngineeringFeatureSupport {
     everySourceFile.getImportDeclarations().forEach((importPackagePath) => {
       /** 在 ast中找到的包含 @ 这个alias 的 import 路径 **/
       const importPackageAliasPath = importPackagePath.getModuleSpecifierValue();
-      if (importPackageAliasPath.startsWith("@")) {
+      if (importPackageAliasPath.startsWith("@/")) {
         /** 当前代码文件的绝对路径 **/
         const sourceCodeFileFullPath = everySourceFile.getFilePath();
         /** 将alias先转换成绝对路径 **/
@@ -39,7 +39,7 @@ export class EngineeringFeatureSupport {
         importPackagePath.setModuleSpecifier(relativePath);
       };
       /** 与上述过程同理,只是换成了处理 @@ 这个指向根目录的alias **/
-      if (importPackageAliasPath.startsWith("@@")) {
+      if (importPackageAliasPath.startsWith("@@/")) {
         const importPackageFullPath = importPackageAliasPath.replace("@@", projectDirectory);
         const sourceCodeFileFullPath = everySourceFile.getFilePath();
         const relativePath = computedRelativePath(sourceCodeFileFullPath, importPackageFullPath);
