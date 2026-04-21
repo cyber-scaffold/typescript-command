@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import { injectable, inject } from "inversify";
 
-import { IOCContainer } from "@/commons/Application/IOCContainer";
+import { IOCContainer } from "@/cores/IOCContainer";
 
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 import { logger } from "@/utils/logger";
@@ -13,7 +13,7 @@ export class DataSourceManager {
   /** DataSource对象的暂存池 **/
   private appDataSource: DataSource;
 
-  constructor(
+  constructor (
     @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 

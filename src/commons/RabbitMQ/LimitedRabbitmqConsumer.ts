@@ -2,8 +2,8 @@ import { red, green } from "colors";
 import amqp, { Connection } from "amqplib";
 import { injectable, inject } from "inversify";
 
+import { IOCContainer } from "@/cores/IOCContainer";
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
-import { IOCContainer } from "@/commons/Application/IOCContainer";
 import { logger } from "@/utils/logger";
 
 export interface IListenerOption {
@@ -31,7 +31,7 @@ export class LimitedRabbitmqConsumer {
   /** 创建Rabbitmq之后的连接 **/
   private connection: Connection;
 
-  constructor(
+  constructor (
     @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 

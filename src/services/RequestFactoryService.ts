@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { injectable, interfaces, inject } from "inversify";
 
-import { IOCContainer } from "@/commons/Application/IOCContainer";
-
+import { IOCContainer } from "@/cores/IOCContainer";
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 export type RequestFactoryServiceProvider = () => RequestFactoryService;
@@ -22,7 +21,7 @@ export class RequestFactoryService {
 
   private id = uuidv4();
 
-  constructor(
+  constructor (
     @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 

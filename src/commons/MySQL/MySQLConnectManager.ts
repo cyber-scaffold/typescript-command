@@ -1,8 +1,7 @@
 import { injectable, inject } from "inversify";
 import { createPool, Pool, PoolConnection } from "mysql2/promise";
 
-import { IOCContainer } from "@/commons/Application/IOCContainer";
-
+import { IOCContainer } from "@/cores/IOCContainer";
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 @injectable()
@@ -12,7 +11,7 @@ export class MySQLConnectManager {
 
   private connection: PoolConnection;
 
-  constructor(
+  constructor (
     @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 

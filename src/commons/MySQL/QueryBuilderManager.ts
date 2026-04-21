@@ -1,8 +1,7 @@
 import knex, { Knex } from "knex";
 import { injectable, inject } from "inversify";
 
-import { IOCContainer } from "@/commons/Application/IOCContainer";
-
+import { IOCContainer } from "@/cores/IOCContainer";
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 @injectable()
@@ -10,7 +9,7 @@ export class QueryBuilderManager {
 
   private knexQueryBuilder: Knex;
 
-  constructor(
+  constructor (
     @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 

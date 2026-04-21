@@ -2,7 +2,7 @@ import { Command } from "commander";
 import { yellow, magenta, red } from "colors";
 import { injectable, inject } from "inversify";
 
-import { IOCContainer } from "@/commons/Application/IOCContainer";
+import { IOCContainer } from "@/cores/IOCContainer";
 
 import { TestService } from "@/services/TestService";
 
@@ -10,7 +10,7 @@ import { TestService } from "@/services/TestService";
 @injectable()
 export class TestProject {
 
-  constructor(
+  constructor (
     @inject(TestService) private readonly $TestService: TestService
   ) { };
 

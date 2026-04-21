@@ -31,6 +31,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^8.4.1",
     "mysql2": "^3.2.0",
+    "typeorm": "^0.3.20",
     "open": "^8.4.2",
     "path-exists": "^4.0.0",
     "redis": "^4.6.5",
@@ -41,9 +42,7 @@
     "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
-    "@types/node": "^24.10.0",
-    "esbuild": "^0.25.12",
-    "esbuild-node-externals": "^1.20.1",
+    "@types/node": "^18.14.5",
     "esbuild-register": "^3.6.0",
     "ts-morph": "^27.0.2",
     "typescript": "^5.7.3"

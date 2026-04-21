@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { injectable, inject } from "inversify";
 
-import { IOCContainer } from "@/commons/Application/IOCContainer";
-
+import { IOCContainer } from "@/cores/IOCContainer";
 import { ApplicationConfigManager } from "@/commons/Application/ApplicationConfigManager";
 
 /**
@@ -14,7 +13,7 @@ export class SessionInfoService {
 
   private id = uuidv4();
 
-  constructor(
+  constructor (
     @inject(ApplicationConfigManager) private readonly $ApplicationConfigManager: ApplicationConfigManager
   ) { };
 
